@@ -19,14 +19,16 @@ class Solution3 {
         for (int i=0; i< idArray.size(); i++) {
             if (spArray.contains(idArray.get(i))){
                 idArray.remove(i);
+                --i;
             }
         }
 
-//        for (int i=0; i< idArray.size(); i++) {
-//            if (idArray.get(i) == idArray.get(i + 1) && idArray.get(i) == '.'){
-//                idArray.remove(i);
-//            }
-//        }
+        for (int i=0; i< idArray.size()-1; i++) {
+            if (idArray.get(i) == '.' && idArray.get(i+1) == '.'){
+                idArray.remove(i);
+                --i;
+            }
+        }
 
         if(idArray.getFirst() == '.'){
             idArray.removeFirst();
@@ -38,11 +40,17 @@ class Solution3 {
             }
         }
 
-        while (idArray.size() >= 15) idArray.removeLast();
+
+        while (idArray.size() > 15) idArray.removeLast();
 
         while (idArray.size() < 1) idArray.add('a');
 
+        if (idArray.getLast() == '.') {
+            idArray.removeLast();
+        }
+
         while (idArray.size() < 3) idArray.add(idArray.getLast());
+
 
         for (int i=0; i< idArray.size(); i++){
             sb.append(idArray.get(i));
