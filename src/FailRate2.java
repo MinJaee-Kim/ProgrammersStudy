@@ -2,33 +2,38 @@ import java.util.*;
 
 class Solution5 {
     public int[] solution(int N, int[] stages) {
-        int[] answer = {};
-        int[] successArray = {};
-        int[] failArray = {};
-        HashMap<Double, Integer> rate = new HashMap<>();
+        int[] answer = new int[N];
+        int[] tryArray = new int[N+1];
+        int[] failArray = new int[N];
+        int k=0;
+
+        HashMap<Integer, Double> rate = new HashMap<>();
 
         for (int i=0; i<stages.length; i++){
             for (int j=0; j<stages[i]; j++){
-                successArray[i]+=1;
+                tryArray[j]+=1;
             }
-            failArray[stages[i]]+=1;
-        }
-        for (int i=0; i<N; i++){
-            rate.put((double) successArray[i] / (double) failArray[i], i);
+            if(stages[i]<=N)
+                failArray[stages[i]-1]+=1;
         }
 
-        List<Map.Entry<Integer, Double>> entryList = new ArrayList<Map.Entry<Integer, Double>>();
-
-        Collections.sort(entryList, new Comparator<Map.Entry<Integer, Double>>() {
-            @Override
-            public int compare(Map.Entry<Integer, Double> o1, Map.Entry<Integer, Double> o2) {
-                return o2.getKey().compareTo(o1.getKey());
+        for (int i=0; i< failArray.length; i++){
+            if(tryArray[i]==0){
+                rate.put(i+1, (double) 0);
+            } else {
+                rate.put(i+1, (double) failArray[i]/(double) tryArray[i]);
             }
-        });
-        for (Map.Entry<Integer, Double> entry : entryList){
-            answer[1] = entry.getKey();
         }
 
+        List<Integer> keySetList = new ArrayList<>(rate.keySet());
+
+        Collections.sort(keySetList, (o1, o2) -> (rate.get(o2).compareTo(rate.get(o1))));
+
+        for (Integer key : keySetList){
+            System.out.println(key+ "/" +rate.get(key));
+            answer[k] = key;
+            k++;
+        }
 
         return answer;
     }
