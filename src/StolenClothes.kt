@@ -1,4 +1,4 @@
-class Solution2 {
+class Solution8 {
     fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
         var answer = 0
         var takingNum : Int = 0

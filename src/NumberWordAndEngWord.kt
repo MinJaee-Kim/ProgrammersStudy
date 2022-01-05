@@ -1,4 +1,4 @@
-class Solution {
+class Solution6 {
     fun solution(s: String): Int {
         var answer: Int = 0
         var newAnswer: String =
