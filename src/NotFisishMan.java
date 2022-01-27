@@ -1,22 +1,30 @@
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 class Solution2 {
     public String solution(String[] participant, String[] completion) {
         String answer = "";
-        int i=0;
-        Arrays.sort(participant);
-        Arrays.sort(completion);
+        HashMap<String, Integer> hashMap = new HashMap<>();
 
-        for (i=0; i< completion.length; i++) {
-            if (!participant[i].equals(completion[i]))
-                answer = participant[i];
+        for (String s : participant){
+            hashMap.put(s, hashMap.getOrDefault(s, 0)+1);
         }
 
-        if (answer.equals(""))
-            answer = participant[i];
+        for (String s : completion) {
+            hashMap.put(s, hashMap.get(s)-1);
+        }
 
+        Iterator<Map.Entry<String, Integer>> iterator = hashMap.entrySet().iterator();
 
+        while (iterator.hasNext()){
+            Map.Entry<String, Integer> entry = iterator.next();
+            if (entry.getValue() != 0){
+                answer = entry.getKey();
+                break;
+            }
+        }
 
-        return String.valueOf(i);
+        return answer;
     }
 }
