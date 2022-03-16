@@ -17,15 +17,17 @@ class Solution18 {
             }
         });
 
-        for (int i=0; i< phone_book.length; i++){
-            System.out.println(phone_book[i]);
-        }
+        for (int i=0; i< phone_book.length; i++) {
+            for (int j = 0; j < phone_book.length; j++){
+                if (i == j) {
+                    continue;
+                }
 
-        for (int i=0; i< phone_book.length; i++){
-            for (int j=1; j< phone_book.length; j++)
-            if (phone_book[i].startsWith(phone_book[j])) {
-                answer = false;
-                break;
+                if (phone_book[i].startsWith(phone_book[j])) {
+                    answer = false;
+
+                    break;
+                }
             }
         }
 
@@ -34,7 +36,7 @@ class Solution18 {
 
     public static void main(String[] args) {
         Solution18 test = new Solution18();
-        String[] testList = new String[]{"987987", "86"};
+        String[] testList = new String[]{"987987", "1"};
 
         System.out.println(test.solution(testList));
     }
