@@ -1,37 +1,17 @@
 import java.util.*
 import kotlin.collections.ArrayList
 
+//다시 푸는중
 class Solution16 {
     fun solution(progresses: IntArray, speeds: IntArray): IntArray {
-        val answer = ArrayList<Int>()
-        val queueProgress : Queue<Int> = LinkedList(progresses.asList())
-        val queueSpeed : Queue<Int> = LinkedList(speeds.asList())
+        var answer = intArrayOf()
+        return answer
+    }
 
-        var i = 0
-        var count = 0
+    fun main(args:Array<String>) {
+        val prograssAry = intArrayOf(93, 30, 55)
+        val speedAry = intArrayOf(93, 30, 55)
 
-        while (true) {
-            if (queueProgress.peek() + queueSpeed.peek()*i >= 100){
-                queueSpeed.poll()
-                queueProgress.poll()
-                count++
-                if (queueProgress.peek() == null){
-                    answer.add(count)
-                    break
-                }
-                if (queueProgress.peek() + queueSpeed.peek()*i < 100){
-                    answer.add(count)
-                    count = 0
-                }
-                continue
-            }
-            i++
-
-            if (queueProgress.peek() == null){
-                break
-            }
-        }
-
-        return answer.toIntArray()
+        println(solution(prograssAry, speedAry))
     }
 }
