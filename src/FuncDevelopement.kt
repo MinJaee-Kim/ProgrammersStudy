@@ -1,7 +1,6 @@
 import java.util.*
 import kotlin.collections.ArrayList
 
-//품
 class Solution16 {
     fun solution(progresses: IntArray, speeds: IntArray): IntArray {
         var answer = ArrayList<Int>()
