@@ -9,6 +9,10 @@ class Solution19 {
             hashMap.put(clothes[i][1], clothes[i][0]);
         }
 
+        for (int i=0; i<hashMap.size(); i++){
+
+        }
+
         return answer;
     }
 
