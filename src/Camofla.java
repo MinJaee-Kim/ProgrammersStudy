@@ -2,18 +2,19 @@ import java.util.HashMap;
 
 class Solution19 {
     public int solution(String[][] clothes) {
-        int answer = 0;
-        HashMap<String, String> hashMap = new HashMap<>();
+        int answer = 1;
+        HashMap<String, Integer> hashMap = new HashMap<>();
 
         for (int i=0; i<clothes.length; i++){
-            hashMap.put(clothes[i][1], clothes[i][0]);
+            hashMap.put(clothes[i][1], hashMap.getOrDefault(clothes[i][1], 1)+1);
         }
 
         for (int i=0; i<hashMap.size(); i++){
-
+            answer*=(hashMap.get(clothes[i][1]));
+            System.out.println(hashMap.get());
         }
 
-        return answer;
+        return answer-1;
     }
 
     public static void main(String[] args) {
