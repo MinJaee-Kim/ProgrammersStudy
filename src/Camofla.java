@@ -9,9 +9,8 @@ class Solution19 {
             hashMap.put(clothes[i][1], hashMap.getOrDefault(clothes[i][1], 1)+1);
         }
 
-        for (int i=0; i<hashMap.size(); i++){
-            answer*=(hashMap.get(clothes[i][1]));
-            System.out.println(hashMap.get());
+        for (String key:hashMap.keySet()){
+            answer*=(hashMap.get(key));
         }
 
         return answer-1;
