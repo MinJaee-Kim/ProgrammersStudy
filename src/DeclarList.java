@@ -12,14 +12,19 @@ class Solution24 {
 
 
         while (iterator.hasNext()){
+            //키값에 해당하는 유저 +1
             String Dec = (String) iterator.next();
             hashMap.put(Dec.substring(Dec.indexOf(" ")+1), hashMap.getOrDefault(Dec.substring(Dec.indexOf(" ")+1), 0)+1);
         }
 
-        for (int i=0; i< report.length; i++){
-            if (hashMap.get(report[i].substring(report[i].indexOf(" ")+1))>=k){
+        Iterator iterator2 = hashSet.iterator();
+
+        while (iterator2.hasNext()){
+            //신고한 유저에게 answer+1
+            String Dec2 = (String) iterator2.next();
+            if (hashMap.get(Dec2.substring(Dec2.indexOf(" ")+1))>=k){
                 for (int j=0; j< id_list.length; j++){
-                    if (report[i].substring(0, report[i].indexOf(" ")).equals(id_list[j])){
+                    if (Dec2.substring(0, Dec2.indexOf(" ")).equals(id_list[j])){
                         answer[j]++;
                     }
                 }
@@ -35,8 +40,8 @@ class Solution24 {
 
 
     public static void main(String[] args) {
-        String[] id_list = {"frodo", "muzi", "apeach", "neo"};
-        String[] report = {"muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"};
+        String[] id_list = {"muzi", "frodo", "apeach", "neo"};
+        String[] report = {"muzi frodo","apeach frodo","apeach frodo","frodo neo","muzi neo","muzi neo","apeach muzi"};
         int K = 2;
 
         Solution24 solution24 = new Solution24();
