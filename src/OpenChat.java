@@ -1,36 +1,34 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class Solution21 {
     public String[] solution(String[] record) {
-        ArrayList answer = new ArrayList<String>();
+        ArrayList<String> arrayList = new ArrayList<>();
+        HashMap<String, String> hashMap = new HashMap();
 
         for (int i=0; i<record.length; i++){
-            for (int j=0; j<=i; j++){
-                if (record[i].substring(record[i].indexOf(" ")+1, record[i].lastIndexOf(" ")+1)
-                        .equals(record[j].substring(record[j].indexOf(" ")+1, record[j].lastIndexOf(" ")+1))){
-                    record[j] = record[j].replace(record[j].substring(record[j].lastIndexOf(" ")+1), record[i].substring(record[i].lastIndexOf(" ")+1));
-                } else if (record[j].substring(record[j].indexOf(" "))
-                        .equals(record[i].substring(record[i].indexOf(" "), record[i].lastIndexOf(" ")))) {
-                    record[j] = record[j] + record[i].substring(record[i].lastIndexOf(" "));
-                }
+            if (record[i].startsWith("Enter")){
+                hashMap.put(record[i].substring(6, record[i].lastIndexOf(" ")), record[i].substring(record[i].lastIndexOf(" ")+1));
+            } else if (record[i].startsWith("Change")) {
+                hashMap.put(record[i].substring(7, record[i].lastIndexOf(" ")), record[i].substring(record[i].lastIndexOf(" ")+1));
             }
         }
 
         for (int i=0; i<record.length; i++){
             if (record[i].startsWith("Enter")){
-                answer.add(record[i].substring(record[i].lastIndexOf(" ")+1)+"님이 들어왔습니다.");
+                arrayList.add(hashMap.get(record[i].substring(6, record[i].lastIndexOf(" ")))+"님이 들어왔습니다.");
             } else if (record[i].startsWith("Leave")) {
-                answer.add(record[i].substring(record[i].lastIndexOf(" ")+1)+"님이 나갔습니다.");
+                arrayList.add(hashMap.get(record[i].substring(record[i].lastIndexOf(" ")+1))+"님이 나갔습니다.");
             }
         }
 
-        String[] array = new String[answer.size()];
+        String[] answer = new String[arrayList.size()];
 
-        for (int i=0; i< answer.size(); i++){
-            array[i] = (String) answer.get(i);
+        for (int i=0; i<arrayList.size(); i++) {
+            answer[i] = arrayList.get(i);
         }
 
-        return array;
+        return answer;
     }
 
     public static void main(String[] args) {
