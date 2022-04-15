@@ -1,33 +1,36 @@
+import java.util.ArrayList;
+
 class Solution21 {
     public String[] solution(String[] record) {
-        String[] answer = {};
+        ArrayList answer = new ArrayList<String>();
 
         for (int i=0; i<record.length; i++){
-            if (record[i].substring(0, 5).equals("Enter") ||
-                    record[i].substring(0, 6).equals("Change")){
-                for (int j=0; j<i; j++){
-                    String pre="a";
-                    String fix="b";
-                    if (record[i].substring(0, 5).equals("Enter") ||
-                            record[i].substring(0, 6).equals("Change")){
-                        pre = record[i].substring(record[i].indexOf(" ")+1, record[i].lastIndexOf(" "));
-                        fix = record[j].substring(record[j].indexOf(" ")+1, record[i].lastIndexOf(" "));
-                    }
-
-                    if (pre.equals(fix) && record[j].substring(0, 5).equals("Enter") || record[j].substring(0, 6).equals("Change")){
-                        record[j] = record[i];
-                    }
+            for (int j=0; j<=i; j++){
+                if (record[i].substring(record[i].indexOf(" ")+1, record[i].lastIndexOf(" ")+1)
+                        .equals(record[j].substring(record[j].indexOf(" ")+1, record[j].lastIndexOf(" ")+1))){
+                    record[j] = record[j].replace(record[j].substring(record[j].lastIndexOf(" ")+1), record[i].substring(record[i].lastIndexOf(" ")+1));
+                } else if (record[j].substring(record[j].indexOf(" "))
+                        .equals(record[i].substring(record[i].indexOf(" "), record[i].lastIndexOf(" ")))) {
+                    record[j] = record[j] + record[i].substring(record[i].lastIndexOf(" "));
                 }
             }
         }
 
-
-        for (int i=0; i<record.length; i++) {
-            System.out.println(record[i]);
+        for (int i=0; i<record.length; i++){
+            if (record[i].startsWith("Enter")){
+                answer.add(record[i].substring(record[i].lastIndexOf(" ")+1)+"님이 들어왔습니다.");
+            } else if (record[i].startsWith("Leave")) {
+                answer.add(record[i].substring(record[i].lastIndexOf(" ")+1)+"님이 나갔습니다.");
+            }
         }
 
-        return answer;
-        //덜품
+        String[] array = new String[answer.size()];
+
+        for (int i=0; i< answer.size(); i++){
+            array[i] = (String) answer.get(i);
+        }
+
+        return array;
     }
 
     public static void main(String[] args) {

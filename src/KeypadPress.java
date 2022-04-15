@@ -1,103 +1,84 @@
-//덜 품
 class Solution9 {
+    String answer = "";
+    int[] left = {0, 3};
+    int[] right = {2, 3};
     public String solution(int[] numbers, String hand) {
-        String answer = "";
-        int left = 8;
-        int right = 8;
-        boolean isLeft = false;
-        boolean isRight = false;
-        int middle = 0;
-
-        StringBuilder sb = new StringBuilder("");
-
-
-        for (int i=0; i< numbers.length; i++){
-            if (numbers[i]==1||numbers[i]==4||numbers[i]==7) {
-                sb.append("L");
-                if (numbers[i]==1){
-                    left = 2;
-                }else if (numbers[i]==4){
-                    left = 4;
-                }else if (numbers[i]==7) {
-                    left = 6;
-                }
-                isLeft = false;
-            }
-            if (numbers[i]==2||numbers[i]==5||numbers[i]==8||numbers[i]==0){
-                if (numbers[i]==2){
-                    middle = 2;
-                }else if (numbers[i]==5){
-                    middle = 4;
-                }else if (numbers[i]==8){
-                    middle = 6;
-                }else if (numbers[i]==0){
-                    middle = 8;
+        for (int i=0; i<numbers.length; i++) {
+            if (numbers[i]==1 || numbers[i]==4 || numbers[i]==7){
+                if (numbers[i]==1) {
+                    left = new int[]{0, 0};
+                } else if (numbers[i]==4) {
+                    left = new int[]{0, 1};
+                } else if (numbers[i]==7) {
+                    left = new int[]{0, 2};
                 }
 
-                if (isLeft){
-                    if (left==middle){
-                        sb.append("L");
-                        right = middle;
-                        isRight = true;
-                        continue;
-                    }
-                    if (left>middle){
-                        left-=2;
-                    }else {
-                        left+=2;
-                    }
+                answer = answer + "L";
+
+            } else if (numbers[i]==3 || numbers[i]==6 || numbers[i]==9) {
+                if (numbers[i]==3) {
+                    right = new int[]{2, 0};
+                } else if (numbers[i]==6) {
+                    right = new int[]{2, 1};
+                } else if (numbers[i]==9) {
+                    right = new int[]{2, 2};
                 }
 
-                if (isRight){
-                    if (right==middle){
-                        sb.append("R");
-                        left = middle;
-                        isLeft = true;
-                        continue;
-                    }
-                    if (right>middle){
-                        right-=2;
-                    }else {
-                        right+=2;
-                    }
-                }
-
-                if (Math.abs(left-middle)==Math.abs(right-middle)){
-                    if (hand.equals("right")){
-                        sb.append("R");
-                        right = middle;
-                        isRight = true;
-                    }else if (hand.equals("left")){
-                        sb.append("L");
-                        left = middle;
-                        isLeft = true;
-                    }
-                } else if (Math.abs(left-middle)>Math.abs(right-middle)){
-                    sb.append("R");
-                    right = middle;
-                    isRight = true;
-                } else if (Math.abs(left-middle)<Math.abs(right-middle)){
-                    sb.append("L");
-                    left = middle;
-                    isLeft = true;
-                }
-
-            }
-            if (numbers[i]==3||numbers[i]==6||numbers[i]==9) {
-                sb.append("R");
-                if (numbers[i]==3){
-                    right = 2;
-                }else if (numbers[i]==6){
-                    right = 4;
-                }else if (numbers[i]==9) {
-                    right = 6;
-                }
-                isRight = false;
+                answer = answer + "R";
+            } else {
+                position(left, right, numbers[i], hand);
             }
         }
 
-        answer = sb.toString();
 
         return answer;
+    }
+
+    public void position(int[] left, int[] right, int numbers, String hand) {
+        int[] position = new int[1];
+
+        if (numbers==2) {
+            position = new int[]{1, 0};
+        } else if (numbers==5) {
+            position = new int[]{1, 1};
+        } else if (numbers==8) {
+            position = new int[]{1, 2};
+        } else if (numbers==0) {
+            position = new int[]{1, 3};
+        }
+
+        int leftX = Math.abs(left[0]-position[0]);
+        int leftY = Math.abs(left[1]-position[1]);
+        int rightX = Math.abs(right[0]-position[0]);
+        int rightY = Math.abs(right[1]-position[1]);
+
+
+        if (leftX+leftY == rightX+rightY) {
+            if (hand.equals("right")){
+                this.right = position;
+                answer = answer + "R";
+                return;
+            } else {
+                this.left = position;
+                answer = answer + "L";
+                return;
+            }
+        } else if (leftX+leftY > rightX+rightY){
+            this.right = position;
+            answer = answer + "R";
+            return;
+        } else {
+            this.left = position;
+            answer = answer + "L";
+            return;
+        }
+    }
+
+    public static void main(String[] args) {
+        Solution9 solution9 = new Solution9();
+        int[] numbers = {1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5};
+        String hand = "right";
+
+        System.out.println(solution9.solution(numbers, hand));
     }
 }
