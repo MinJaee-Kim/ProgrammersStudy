@@ -2,36 +2,43 @@
 class Solution20 {
     public int solution(String s) {
         int answer = s.length();
+        int count = 1;
+        StringBuilder stringBuilder = new StringBuilder();
 
-
-        for (int i=1; i<=s.length()/2; ++i){
-            int pos = 0;
-            int len = s.length();
-            for (; pos + i <= s.length();){
-                String unit = s.substring(pos, pos+i);
-                pos += i;
-
-                int cnt = 0;
-                for (; pos + i <= s.length();){
-                    if (unit.equals(s.substring(pos, pos + i))){
-                        ++cnt;
-                        pos += i;
+        for (int i=1; i<=s.length()/2; i++){
+            stringBuilder.delete(0, stringBuilder.length());
+            for (int j=0; ; j+=i){
+                String comp = s.substring(j, j+i);
+                if (j+i+i>s.length()){
+                    if (count>1){
+                        stringBuilder.append(count);
+                        stringBuilder.append(comp);
                     } else {
-                        break;
+                        stringBuilder.append(comp);
                     }
+                    count = 1;
+
+                    stringBuilder.append(s.substring(j+i));
+
+                    break;
                 }
-
-                if (cnt > 0) {
-                    len -= i * cnt;
-
-                    if (cnt < 9) len += 1;
-                    else if (cnt < 99) len += 2;
-                    else if (cnt < 999) len += 3;
-                    else len += 4;
+                if (s.substring(j+i, j+i+i).equals(comp)){
+                    count++;
+                } else {
+                    if (count>1){
+                        stringBuilder.append(count);
+                        stringBuilder.append(comp);
+                    } else {
+                        stringBuilder.append(comp);
+                    }
+                    count = 1;
                 }
             }
-
-            answer = Math.min(answer, len);
+            if (stringBuilder.length() > 1) {
+                if (answer > stringBuilder.length()) {
+                    answer = stringBuilder.length();
+                }
+            }
         }
 
         return answer;
@@ -40,6 +47,6 @@ class Solution20 {
     public static void main(String[] args) {
         Solution20 solution20 = new Solution20();
 
-        System.out.println(solution20.solution("aabbaccc"));
+        System.out.println(solution20.solution("abcabcdede"));
     }
 }
