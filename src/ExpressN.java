@@ -1,13 +1,14 @@
 import java.util.HashSet;
 import java.util.Iterator;
 
+
+//덜 품
 class Solution32 {
     public int solution(int N, int number) {
         int answer = 0;
         HashSet hashSet = new HashSet<>();
         HashSet hashSet2 = new HashSet<>();
         String[] arr = {String.valueOf(N), "+"+N, "-"+N, "*"+N, "/"+N};
-        boolean[] visited = new boolean[arr.length];
 
         //dp
 //        int d[] = new int[number+1];
@@ -20,49 +21,43 @@ class Solution32 {
 //                else if (d[i - N] + 1 < d[i]) d[i] = d[i - N] + 1;
 //            }
 //        }
-        
-        hashSet.add(N);
 
-        for (int k = 0; k < 9; k++) {
-            for (int i = 0; i < arr.length; i++) {
-                if (k%2==0) {
-                    Iterator iterator = hashSet.iterator();
-                    Integer parameter = (Integer) iterator.next();
-                    int value = 0;
-                    String val = "";
-                    for (int j = 0; j < hashSet.size(); j++) {
-                        if (arr[i].startsWith("+")){
-                            value = parameter + Integer.parseInt(arr[i].substring(1));
-                        } else if (arr[i].startsWith("-")){
-                            value = parameter - Integer.parseInt(arr[i].substring(1));
-                        } else if (arr[i].startsWith("*")){
-                            value = parameter * Integer.parseInt(arr[i].substring(1));
-                        } else if (arr[i].startsWith("/")){
-                            value = parameter / Integer.parseInt(arr[i].substring(1));
-                        } else {
-                            val = parameter.toString()+val;
-                            hashSet2.add(val);
-                        }
-                        hashSet2.add(value);
+        int repeat = 0;
+        hashSet.add(N);
+        Iterator iterator = hashSet.iterator();
+        int num;
+
+        while (repeat <= 8) {
+            if (!iterator.hasNext()){
+                repeat++;
+                iterator = hashSet.iterator();
+            }
+            else
+            {
+                num = (int) iterator.next();
+                for (int j = 0; j < arr.length; j++) {
+                    if (arr[j].charAt(0) == '+') {
+//                        System.out.println(num+N);
+                        hashSet.add(num+N);
+                    } else if (arr[j].charAt(0) == '-') {
+//                        if (num-N<0){
+//                            continue;
+//                        }
+                        hashSet.add(num-N);
+                    } else if (arr[j].charAt(0) == '*') {
+                        hashSet.add(num*N);
+                    } else if (arr[j].charAt(0) == '/') {
+                        hashSet.add(num/N);
+                    } else {
+                        String addnum = "";
+                        addnum = num + String.valueOf(N);
+                        hashSet.add(Integer.parseInt(addnum));
                     }
                 }
-
-//                if (k%2==1) {
-//                    Iterator iterator = hashSet2.iterator();
-//                    Integer parameter = (Integer) iterator.next();
-//                    for (int j = 0; j < hashSet2.size(); j++) {
-//                        hashSet.add(parameter + arr[i]);
-//                    }
-//                }
+                System.out.println(hashSet);
+                System.out.println(repeat);
             }
         }
-
-
-//        while (iterator.hasNext()) {
-//            System.out.println(hashSet2.iterator().next());
-//        }
-        System.out.println(hashSet2);
-
         return answer;
     }
 

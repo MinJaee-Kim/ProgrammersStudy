@@ -8,6 +8,7 @@ class Solution33 {
         int answer = 0;
         String[] character = {"A", "C", "F", "J", "M", "N", "R", "T"};
         String[] output = new String[character.length];
+        StringBuilder stringBuilder = new StringBuilder();
         boolean[] visited = new boolean[character.length];
 
         perm(character, output, visited, 0, character.length, 8);
@@ -15,22 +16,23 @@ class Solution33 {
         for (int i=0; i< data.length; i++) {
             ArrayList<String> answerList = new ArrayList();
             for (int j = 0; j < arrayList.size(); j++) {
-                String time="";
+                stringBuilder.delete(0, stringBuilder.length());
                 if (data[i].charAt(3) == '=') {
                     for (int k = 0; k < Integer.parseInt(data[i].substring(4)); k++) {
-                        time += ".";
+                        stringBuilder.append(".");
                     }
                 } else if (data[i].charAt(3) == '>') {
                     for (int k = 0; k < Integer.parseInt(data[i].substring(4)) + 1; k++) {
-                        time += ".";
+                        stringBuilder.append(".");
                         if (k == Integer.parseInt(data[i].substring(4)) - 1) {
-                            time += "+";
+                            stringBuilder.append("+");
                         }
                     }
                 } else if (data[i].charAt(3) == '<') {
-                    time="[A-Z]"+"{0,"+(Integer.parseInt(String.valueOf(data[i].charAt(4)))-1)+"}";
-                    Pattern pattern = Pattern.compile(data[i].substring(0, 1)+time+data[i].substring(2, 3));
-                    Pattern pattern2 = Pattern.compile(data[i].substring(2, 3)+time+data[i].substring(0, 1));
+                    stringBuilder.delete(0, stringBuilder.length());
+                    stringBuilder.append("[A-Z]"+"{0,"+(Integer.parseInt(String.valueOf(data[i].charAt(4)))-1)+"}");
+                    Pattern pattern = Pattern.compile(data[i].substring(0, 1)+stringBuilder+data[i].substring(2, 3));
+                    Pattern pattern2 = Pattern.compile(data[i].substring(2, 3)+stringBuilder+data[i].substring(0, 1));
                     Matcher matcher = pattern.matcher(arrayList.get(j));
                     Matcher matcher2 = pattern2.matcher(arrayList.get(j));
                     if (matcher.find() || matcher2.find()) {
@@ -38,8 +40,8 @@ class Solution33 {
                     }
                     continue;
                 }
-                Pattern pattern = Pattern.compile(data[i].substring(0, 1)+time+data[i].substring(2, 3));
-                Pattern pattern2 = Pattern.compile(data[i].substring(2, 3)+time+data[i].substring(0, 1));
+                Pattern pattern = Pattern.compile(data[i].substring(0, 1)+stringBuilder+data[i].substring(2, 3));
+                Pattern pattern2 = Pattern.compile(data[i].substring(2, 3)+stringBuilder+data[i].substring(0, 1));
                 Matcher matcher = pattern.matcher(arrayList.get(j));
                 Matcher matcher2 = pattern2.matcher(arrayList.get(j));
                 if (matcher.find() || matcher2.find()) {

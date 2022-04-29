@@ -1,4 +1,3 @@
-//킵
 class Solution20 {
     public int solution(String s) {
         int answer = s.length();
