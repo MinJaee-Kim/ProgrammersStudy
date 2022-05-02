@@ -7,8 +7,6 @@ class Solution32 {
     public int solution(int N, int number) {
         int answer = 0;
         HashSet hashSet = new HashSet<>();
-        HashSet hashSet2 = new HashSet<>();
-        String[] arr = {String.valueOf(N), "+"+N, "-"+N, "*"+N, "/"+N};
 
         //dp
 //        int d[] = new int[number+1];
@@ -22,42 +20,22 @@ class Solution32 {
 //            }
 //        }
 
-        int repeat = 0;
         hashSet.add(N);
-        Iterator iterator = hashSet.iterator();
-        int num;
 
-        while (repeat <= 8) {
-            if (!iterator.hasNext()){
-                repeat++;
-                iterator = hashSet.iterator();
+        for (int i=0; i<9; i++){
+            Iterator iterator = hashSet.iterator();
+            Object num;
+            while (iterator.hasNext()){
+                num = iterator.next();
+                hashSet.add(Integer.parseInt(num.toString())+N);
+                hashSet.add(Integer.parseInt(num.toString())*N);
+                hashSet.add(Integer.parseInt(num.toString())-N);
+                hashSet.add(Integer.parseInt(num.toString())/N);
+                hashSet.add(num +String.valueOf(N));
             }
-            else
-            {
-                num = (int) iterator.next();
-                for (int j = 0; j < arr.length; j++) {
-                    if (arr[j].charAt(0) == '+') {
-//                        System.out.println(num+N);
-                        hashSet.add(num+N);
-                    } else if (arr[j].charAt(0) == '-') {
-//                        if (num-N<0){
-//                            continue;
-//                        }
-                        hashSet.add(num-N);
-                    } else if (arr[j].charAt(0) == '*') {
-                        hashSet.add(num*N);
-                    } else if (arr[j].charAt(0) == '/') {
-                        hashSet.add(num/N);
-                    } else {
-                        String addnum = "";
-                        addnum = num + String.valueOf(N);
-                        hashSet.add(Integer.parseInt(addnum));
-                    }
-                }
-                System.out.println(hashSet);
-                System.out.println(repeat);
-            }
+            num = null;
         }
+
         return answer;
     }
 

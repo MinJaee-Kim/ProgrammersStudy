@@ -21,3 +21,9 @@ class Solution14 {
         return targetNum
     }
 }
+
+fun main() {
+    val numbers = IntArray(5, { 1;1;1;1;1 })
+
+    println(Solution14().solution(numbers, 3))
+}
