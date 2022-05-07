@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class Solution63 {
     public boolean solution(String s) {
