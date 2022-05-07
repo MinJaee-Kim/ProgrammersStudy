@@ -1,6 +1,6 @@
-package unsolved;
+package solved;
 
-class Solution58 {
+class Solution59 {
     public int solution(int n) {
         return Fibonacci(n);
     }
@@ -19,8 +19,8 @@ class Solution58 {
     }
 
     public static void main(String[] args) {
-        Solution58 solution58 = new Solution58();
+        Solution59 solution59 = new Solution59();
 
-        System.out.println(solution58.solution(3));
+        System.out.println(solution59.solution(3));
     }
 }
