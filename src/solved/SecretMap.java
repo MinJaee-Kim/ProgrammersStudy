@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class Solution65 {
     public String[] solution(int n, int[] arr1, int[] arr2) {
