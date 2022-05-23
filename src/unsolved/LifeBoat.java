@@ -1,41 +1,43 @@
 package unsolved;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 class Solution47 {
     public int solution(int[] people, int limit) {
         int answer = 0;
-        int person = 0;
-        int count = 0;
+        int compare = 0;
+        Stack<Integer> stack = new Stack();
+        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue2 = new LinkedList<>();
 
-        ArrayList<Integer> arrayList = new ArrayList();
-        Arrays.sort(people);
-
-        for (int i=people.length-1; i>=0; i--){
-            arrayList.add(people[i]);
+        for (int i=0; i<people.length; i++){
+            queue.add(people[i]);
         }
 
-        System.out.println(arrayList);
-
-
-        for (int i=0; ; i++){
-            if (arrayList.isEmpty()) {
-                break;
+        while (!queue.isEmpty() || !queue2.isEmpty()){
+            if(stack.isEmpty()) {
+                stack.push(queue.poll());
+                continue;
             }
+            compare = queue.peek();
 
-            if (person + arrayList.get(i) <= limit) {
-                person += arrayList.get(i);
-                arrayList.remove(i);
-                i--;
-                count++;
-            }
-
-            if (i==arrayList.size()-1 || count>=2){
+            if (stack.peek()+compare<=limit){
+                stack.pop();
+                queue.poll();
                 answer++;
-                person = 0;
-                count=0;
-                i=-1;
+            } else {
+                queue2.add(queue.poll());
+            }
+
+            if (queue.isEmpty()){
+                queue.addAll(queue2);
+                queue2.clear();
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+                answer++;
             }
         }
 
@@ -44,8 +46,8 @@ class Solution47 {
 
     public static void main(String[] args) {
         Solution47 solution47 = new Solution47();
-        int[] people = {40, 40, 80};
-        int limit = 160;
+        int[] people = {70, 50, 80, 50};
+        int limit = 100;
 
         System.out.println(solution47.solution(people, limit));
     }

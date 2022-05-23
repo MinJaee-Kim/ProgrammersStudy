@@ -6,6 +6,27 @@ import java.util.regex.Pattern;
 
 class Solution33 {
     ArrayList<String> arrayList = new ArrayList();
+    private void perm(String[] character, String[] output, boolean[] visited, int depth, int n, int r) {
+        StringBuilder answer = new StringBuilder();
+        if (depth == r) {
+            for (int i=0; i<output.length; i++) {
+                answer.append(output[i]);
+            }
+            arrayList.add(answer.toString());
+            return;
+        }
+
+
+        for (int i=0; i<n; i++) {
+            if (!visited[i]) {
+                visited[i] = true;
+                output[depth] = character[i];
+                perm(character, output, visited, depth + 1, n, r);
+                visited[i] = false;
+            }
+        }
+    }
+
     public int solution(int n, String[] data) {
         int answer = 0;
         String[] character = {"A", "C", "F", "J", "M", "N", "R", "T"};
@@ -32,7 +53,7 @@ class Solution33 {
                     }
                 } else if (data[i].charAt(3) == '<') {
                     stringBuilder.delete(0, stringBuilder.length());
-                    stringBuilder.append("[A-Z]"+"{0,"+(Integer.parseInt(String.valueOf(data[i].charAt(4)))-1)+"}");
+                    stringBuilder.append("[A-Z]" + "{0,").append(Integer.parseInt(String.valueOf(data[i].charAt(4))) - 1).append("}");
                     Pattern pattern = Pattern.compile(data[i].substring(0, 1)+stringBuilder+data[i].substring(2, 3));
                     Pattern pattern2 = Pattern.compile(data[i].substring(2, 3)+stringBuilder+data[i].substring(0, 1));
                     Matcher matcher = pattern.matcher(arrayList.get(j));
@@ -52,38 +73,17 @@ class Solution33 {
             }
 
             arrayList = answerList;
-            System.out.println(answerList);
+//            System.out.println(answerList);
             answer = answerList.size();
         }
         return answer;
-    }
-
-    private void perm(String[] character, String[] output, boolean[] visited, int depth, int n, int r) {
-        String answer = "";
-        if (depth == r) {
-            for (int i=0; i<output.length; i++) {
-                answer+=output[i];
-            }
-            arrayList.add(answer);
-            return;
-        }
-
-
-        for (int i=0; i<n; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                output[depth] = character[i];
-                perm(character, output, visited, depth + 1, n, r);
-                visited[i] = false;
-            }
-        }
     }
 }
 
 public class TakePicture {
     public static void main(String[] args) {
         Solution33 solution33 = new Solution33();
-        String[] data = {"N~F=2", "R~T<2"};
+        String[] data = {"N~F=0", "R~T>2"};
         int n = 2;
 
         System.out.println(solution33.solution(2, data));
