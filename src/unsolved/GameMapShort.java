@@ -1,6 +1,6 @@
 package unsolved;
 
-class Solution60 {
+class Solution74 {
     int min = 99999;
     public int solution(int[][] maps) {
         int answer = 0;
@@ -49,9 +49,9 @@ class Solution60 {
     }
 
     public static void main(String[] args) {
-        Solution60 solution60 = new Solution60();
+        Solution74 solution74 = new Solution74();
         int[][] maps = {{1,1,1,1,1},{0,0,0,0,1},{0,0,0,0,1},{0,0,0,0,1},{0,0,0,0,1}};
 
-        System.out.println(solution60.solution(maps));
+        System.out.println(solution74.solution(maps));
     }
 }

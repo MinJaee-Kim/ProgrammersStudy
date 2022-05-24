@@ -2,7 +2,7 @@ package solved;
 
 import java.util.HashMap;
 
-class Solution59 {
+class Solution75 {
     public int[] solution(int n, String[] words) {
         int[] answer = new int[2];
         int count = 1;
@@ -41,9 +41,9 @@ class Solution59 {
     }
 
     public static void main(String[] args) {
-        Solution59 solution59 = new Solution59();
+        Solution75 solution75 = new Solution75();
         String[] words = {"hello", "observe", "effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"};
 
-        System.out.println(solution59.solution(3, words));
+        System.out.println(solution75.solution(3, words));
     }
 }

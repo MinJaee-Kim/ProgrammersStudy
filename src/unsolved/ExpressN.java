@@ -1,41 +1,33 @@
 package unsolved;
 
 import java.util.HashSet;
-import java.util.Iterator;
 
-
-//덜 품
 class Solution32 {
     public int solution(int N, int number) {
         int answer = 0;
-        HashSet hashSet = new HashSet<>();
+        HashSet<Integer>[] hashSetList = new HashSet[9];
 
-        //dp
-//        int d[] = new int[number+1];
-//        for (int i=1; i<number; i++){
-//            d[i] = -1;
-//            for (int j=0; j<0; j++){
-//                if (d[i]-N<0)
-//                    continue;
-//                if (d[i] < 0) d[i] = d[i - N] + 1;
-//                else if (d[i - N] + 1 < d[i]) d[i] = d[i - N] + 1;
-//            }
-//        }
+        for (int i=0; i<9; i++) {
+            hashSetList[i] = new HashSet<>();
+        }
+        hashSetList[0].add(N);
 
-        hashSet.add(N);
-
-        for (int i=0; i<9; i++){
-            Iterator iterator = hashSet.iterator();
-            Object num;
-            while (iterator.hasNext()){
-                num = iterator.next();
-                hashSet.add(Integer.parseInt(num.toString())+N);
-                hashSet.add(Integer.parseInt(num.toString())*N);
-                hashSet.add(Integer.parseInt(num.toString())-N);
-                hashSet.add(Integer.parseInt(num.toString())/N);
-                hashSet.add(num +String.valueOf(N));
+        for (int i=1; i<9; i++){
+            if (hashSetList[i-1].contains(number)){
+                answer = i;
+                break;
+            } else {
+                answer = -1;
             }
-            num = null;
+            for (Integer j : hashSetList[i-1]){
+                hashSetList[i].add(j+N);
+                hashSetList[i].add(j*N);
+                hashSetList[i].add(j-N);
+                hashSetList[i].add(j/N);
+                if (Long.parseLong(j+String.valueOf(N))<2147483647) {
+                    hashSetList[i].add(Integer.valueOf(j+String.valueOf(N)));
+                }
+            }
         }
 
         return answer;
