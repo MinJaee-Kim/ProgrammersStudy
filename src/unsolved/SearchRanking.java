@@ -3,16 +3,6 @@ package unsolved;
 class Solution43 {
     public int[] solution(String[] info, String[] query) {
         int[] answer = {};
-
-
-        System.out.println(info[1].substring(info[1].indexOf(" ")+1, info[1].indexOf(" ", 7)));
-
-        for (int i=0; i< info.length; i++){
-            for (int j=0; j< query.length; j++){
-
-            }
-        }
-
         return answer;
     }
 
