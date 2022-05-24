@@ -19,13 +19,19 @@ class Solution32 {
             } else {
                 answer = -1;
             }
-            for (Integer j : hashSetList[i-1]){
-                hashSetList[i].add(j+N);
-                hashSetList[i].add(j*N);
-                hashSetList[i].add(j-N);
-                hashSetList[i].add(j/N);
-                if (Long.parseLong(j+String.valueOf(N))<2147483647) {
-                    hashSetList[i].add(Integer.valueOf(j+String.valueOf(N)));
+            for (int k=i; k>0; k--) {
+                for (Integer l : hashSetList[k-1]) {
+                    for (Integer j : hashSetList[i - k]) {
+                        hashSetList[i].add(j + l);
+                        hashSetList[i].add(j * l);
+                        hashSetList[i].add(j - l);
+                        if (l!=0) {
+                            hashSetList[i].add(j / l);
+                        }
+                        if (l==N) {
+                            hashSetList[i].add(Integer.valueOf(j + String.valueOf(l)));
+                        }
+                    }
                 }
             }
         }
@@ -37,6 +43,6 @@ class Solution32 {
     public static void main(String[] args) {
         Solution32 solution32 = new Solution32();
 
-        System.out.println(solution32.solution(5, 12));
+        System.out.println(solution32.solution(8, 5800));
     }
 }
