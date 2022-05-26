@@ -1,6 +1,6 @@
-package unsolved;
+package solved;
 
-class Solution76 {
+class Solution77 {
     int answer = 0;
     public int solution(int k, int[][] dungeons) {
         boolean[] visited = new boolean[dungeons.length];
@@ -31,10 +31,10 @@ class Solution76 {
     }
 
     public static void main(String[] args) {
-        Solution76 solution76 = new Solution76();
+        Solution77 solution77 = new Solution77();
         int k = 80;
         int[][] dungeons = {{80,20},{50,40},{30,10}};
 
-        System.out.println(solution76.solution(k, dungeons));
+        System.out.println(solution77.solution(k, dungeons));
     }
 }

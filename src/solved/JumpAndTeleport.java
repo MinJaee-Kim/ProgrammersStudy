@@ -1,6 +1,6 @@
-package unsolved;
+package solved;
 
-class Solution75 {
+class Solution78 {
     public int solution(int n) {
         int ans = 0;
 
@@ -17,8 +17,8 @@ class Solution75 {
     }
 
     public static void main(String[] args) {
-        Solution75 solution75 = new Solution75();
+        Solution78 solution78 = new Solution78();
 
-        System.out.println(solution75.solution(5000));
+        System.out.println(solution78.solution(5000));
     }
 }
