@@ -1,6 +1,6 @@
 package solved;
 
-class Solution78 {
+class Solution79 {
     public boolean solution(int x) {
         int value = 0;
         for (int i=0; i<String.valueOf(x).length(); i++){

@@ -1,13 +1,45 @@
 package solved;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Solution38 {
+    boolean[] visit;
     public int solution(int n, int[][] computers) {
         int answer = 0;
-        boolean[][] visited = new boolean[n][n];
-        for (int i=0; i<computers.length; i++) {
-            for (int j=0; j<computers[i].length; j++) {
-                answer+=dfs(computers, visited, i, j);
+//        boolean[][] visited = new boolean[n][n];
+//        for (int i=0; i<computers.length; i++) {
+//            for (int j=0; j<computers[i].length; j++) {
+//                answer+=dfs(computers, visited, i, j);
+//            }
+//        }
+
+        visit = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            if (visit[i]){
+                continue;
             }
+
+            Queue<Integer> q = new LinkedList<>();
+            q.offer(i);
+            visit[i] = true;
+            answer++;
+
+            while (!q.isEmpty()) {
+                int computer = q.poll();
+
+                for (int j = 0; j < n; j++) {
+                    if (j == computer || visit[j]) {
+                        continue;
+                    }
+                    if (computers[computer][j] == 1) {
+                        q.offer(j);
+                        visit[j] = true;
+                    }
+                }
+            }
+
         }
 
         return answer;

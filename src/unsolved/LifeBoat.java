@@ -1,44 +1,35 @@
 package unsolved;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
 
 class Solution47 {
     public int solution(int[] people, int limit) {
         int answer = 0;
-        int compare = 0;
-        Stack<Integer> stack = new Stack();
-        Queue<Integer> queue = new LinkedList<>();
-        Queue<Integer> queue2 = new LinkedList<>();
-
-        for (int i=0; i<people.length; i++){
-            queue.add(people[i]);
+        int count = 0;
+        int first = 0;
+        int second = 0;
+        Integer[] sortPeople = new Integer[people.length];
+        LinkedList linkedList = new LinkedList<>();
+        for (int i=0; i< people.length; i++){
+            sortPeople[i] = people[i];
         }
-
-        while (!queue.isEmpty() || !queue2.isEmpty()){
-            if(stack.isEmpty()) {
-                stack.push(queue.poll());
+        Arrays.sort(sortPeople, Collections.reverseOrder());
+        for (int i=0; i<sortPeople.length; i++){
+            first = sortPeople[i];
+            count = 0;
+            if (linkedList.contains(i)) {
                 continue;
             }
-            compare = queue.peek();
-
-            if (stack.peek()+compare<=limit){
-                stack.pop();
-                queue.poll();
-                answer++;
-            } else {
-                queue2.add(queue.poll());
-            }
-
-            if (queue.isEmpty()){
-                queue.addAll(queue2);
-                queue2.clear();
-                if (!stack.isEmpty()) {
-                    stack.pop();
+            for (int j=i+1; j<sortPeople.length; j++) {
+                second = sortPeople[j];
+                if (first + second <= limit && count == 0) {
+                    linkedList.add(j);
+                    count++;
                 }
-                answer++;
             }
+            answer++;
         }
 
         return answer;
@@ -46,7 +37,7 @@ class Solution47 {
 
     public static void main(String[] args) {
         Solution47 solution47 = new Solution47();
-        int[] people = {70, 50, 80, 50};
+        int[] people = {20, 50, 50, 80};
         int limit = 100;
 
         System.out.println(solution47.solution(people, limit));
