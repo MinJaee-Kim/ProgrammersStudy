@@ -2,7 +2,7 @@ package solved;
 
 import java.util.Stack;
 
-class Solution78 {
+class Solution79 {
     public int solution(String s) {
         int answer = 0;
 
@@ -56,9 +56,9 @@ class Solution78 {
     }
 
     public static void main(String[] args) {
-        Solution78 solution78 = new Solution78();
+        Solution79 solution79 = new Solution79();
         String s = "{{{{{{{";
 
-        System.out.println(solution78.solution(s));
+        System.out.println(solution79.solution(s));
     }
 }

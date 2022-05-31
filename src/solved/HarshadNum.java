@@ -1,6 +1,6 @@
 package solved;
 
-class Solution79 {
+class Solution80 {
     public boolean solution(int x) {
         int value = 0;
         for (int i=0; i<String.valueOf(x).length(); i++){
@@ -14,8 +14,8 @@ class Solution79 {
     }
 
     public static void main(String[] args) {
-        Solution78 solution78 = new Solution78();
+        Solution80 solution80 = new Solution80();
 
-        System.out.println(solution78.solution(10));
+        System.out.println(solution80.solution(10));
     }
 }
