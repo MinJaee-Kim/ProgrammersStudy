@@ -1,11 +1,11 @@
-package unsolved;//킵
+package solved;
 
-import java.util.HashMap;
+import java.util.*;
 
 class Solution49 {
     HashMap<String, Integer> hashMap = new HashMap<>();
     public String[] solution(String[] orders, int[] course) {
-        String[] answer = {};
+        ArrayList<String> arrayList = new ArrayList();
         int max = 0;
         boolean isRepeat = false;
 
@@ -26,8 +26,8 @@ class Solution49 {
                             }
                         }
                     } else {
-                        if (max <= hashMap.get(s)) {
-                            System.out.println(s);
+                        if (max <= hashMap.get(s) && hashMap.get(s)>=2) {
+                            arrayList.add(s);
                         }
                     }
                 }
@@ -41,19 +41,28 @@ class Solution49 {
             }
         }
 
+        Collections.sort(arrayList);
 
-        System.out.println(hashMap);
+        String[] answer = new String[arrayList.size()];
+        for (int i=0; i<arrayList.size(); i++){
+            answer[i] = arrayList.get(i);
+        }
 
         return answer;
     }
 
     private void comb(String[] orders, boolean[] visited, int depth, int r, int i) {
+        ArrayList<String> arrayList = new ArrayList();
         String value = "";
         if (r==0){
             for (int j=0; j< visited.length; j++){
                 if (visited[j]){
-                    value+=orders[i].charAt(j);
+                    arrayList.add(String.valueOf(orders[i].charAt(j)));
                 }
+            }
+            Collections.sort(arrayList);
+            for (int j=0; j<arrayList.size(); j++){
+                value+=arrayList.get(j);
             }
             hashMap.put(value, hashMap.getOrDefault(value, 0)+1);
             return;
@@ -66,7 +75,6 @@ class Solution49 {
         comb(orders, visited, depth + 1, r - 1, i);
         visited[depth] = false;
         comb(orders, visited, depth + 1, r, i);
-
     }
 
     public static void main(String[] args) {
