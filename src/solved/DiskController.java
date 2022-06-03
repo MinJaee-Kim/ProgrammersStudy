@@ -3,7 +3,7 @@ package solved;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-class Solution90 {
+class Solution91 {
     public int solution(int[][] jobs) {
         int round;
         PriorityQueue<Result> priorityQueue = new PriorityQueue<>();
@@ -72,13 +72,13 @@ class Solution90 {
     }
 
     public static void main(String[] args) {
-        Solution90 solution90 = new Solution90();
+        Solution91 solution91 = new Solution91();
         int[][] jobs = {{0, 10}, {4, 10}, {15, 2}, {5, 11}};
 
-//        System.out.println(solution90.solution(jobs));
-//        System.out.println(solution90.solution(new int[][]{{24, 10}, {18, 39}, {34, 20}, {37, 5}, {47, 22}, {20, 47}, {15, 34}, {15, 2}, {35, 43}, {26, 1}}));
-//        System.out.println(solution90.solution(new int[][]{{0, 5}, {2, 10}, {10000, 2}}));
-//        System.out.println(solution90.solution(new int[][]{{0,1},{0,2},{2,1}}));
-//        System.out.println(solution90.solution(new int[][]{{0,3},{4,4},{5,3},{4,1}}));
+//        System.out.println(solution91.solution(jobs));
+//        System.out.println(solution91.solution(new int[][]{{24, 10}, {18, 39}, {34, 20}, {37, 5}, {47, 22}, {20, 47}, {15, 34}, {15, 2}, {35, 43}, {26, 1}}));
+//        System.out.println(solution91.solution(new int[][]{{0, 5}, {2, 10}, {10000, 2}}));
+//        System.out.println(solution91.solution(new int[][]{{0,1},{0,2},{2,1}}));
+//        System.out.println(solution91.solution(new int[][]{{0,3},{4,4},{5,3},{4,1}}));
     }
 }
