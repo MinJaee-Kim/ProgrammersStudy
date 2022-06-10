@@ -6,53 +6,32 @@ import java.util.Arrays;
 class Solution60 {
     public int solution(String begin, String target, String[] words) {
         int answer = 0;
-        ArrayList<String> visited = new ArrayList<>();
-        ArrayList<String> words2 = new ArrayList<>();
+        boolean[] visited = new boolean[words.length];
 
-        words2.addAll(Arrays.asList(words));
-
-        if (words2.contains(target)) {
-            answer = dfs(words, visited, begin, target);
-        }
+//        answer = dfs(words, visited, begin, target);
 
         return answer;
     }
 
-    private int dfs(String[] words, ArrayList<String> visited, String word, String target) {
+    private int dfs(String[] words, boolean[] visited, String word, String target, int depth) {
+        int check = 0;
         int value = 1;
-        int isUse = 0;
-
-        if (visited.contains(word)){
-            return 0;
-        }
-        for (int i=0; i< target.length(); i++){
-            if (target.charAt(i)!=word.charAt(i)){
-                isUse++;
-            }
-        }
-        if (isUse==0){
+        if (word.equals(target)){
             return value;
         }
-        isUse = 0;
 
-        visited.add(word);
-
-        for (int i=0; i< words.length; i++){
-            for (int j=0; j< words[i].length(); j++){
-                if (word.charAt(j)!=words[i].charAt(j)){
-                    isUse++;
-                }
+        for (int i=0; i< words[depth].length(); i++){
+            if (words[depth].charAt(i)==word.charAt(i)){
+                check++;
             }
-
-            if (isUse==1){
-                value+=dfs(words, visited, words[i], target);
-                break;
-            }
-            isUse = 0;
-
         }
 
-        return value;
+        visited[depth] = true;
+
+        if (check==word.length()-1){
+//            value+=dfs()
+        }
+        return 0;
     }
 
     public static void main(String[] args) {
