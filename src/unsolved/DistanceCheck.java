@@ -1,58 +1,47 @@
 package unsolved;
 
-class Solution40 {
-    public int[] solution(String[][] places) {
-        int[] answer = new int[places.length];
-        boolean[][] visited = new boolean[places.length][places.length];
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
-        for (int i=0; i< places[0][0].length(); i++) {
-            for (int j = 0; j < places[0][0].length(); j++) {
-                if (places[0][0].charAt(i) == 'P') {
-                    answer[0] = dfs(places, visited, i, j, 0, 0);
+class Solution40 {
+    int[] answer = {1, 1, 1, 1, 1};
+    public int[] solution(String[][] places) {
+
+        for (int i=0; i< places.length; i++){
+            boolean[][] visited = new boolean[places.length][places.length];
+            for (int j=0; j< places[i].length; j++){
+                for (int k=0; k< places[i][j].length(); k++){
+                    if (places[i][j].charAt(k)=='P'){
+                        dfs(places, k, i, j, 0);
+                    }
                 }
             }
+        }
+
+        for (int i=0; i< answer.length; i++) {
+            System.out.print(answer[i]);
         }
 
         return answer;
     }
 
-    private int dfs(String[][] places, boolean[][] visited, int i, int depthX, int depthY, int repeat) {
-        if (depthX < 0 || depthX > 4 || depthX > i+2 || depthX < i-3){
-            return 1;
-        } else if (depthY < 0 || depthY > i+2) {
-            return 1;
-        }
+    private void dfs(String[][] places, int now, int x, int y, int depth) {
+        if (now>=0&&y>=0&&y<places.length) {
+            if (now<places[x][y].length()) {
+                if (depth!=0&&places[x][y].charAt(now) == 'P'){
+                    answer[x] = 0;
+                }
+                if (depth==0) {
+                    dfs(places, now+1, x, y, 1);
+                    dfs(places, y, x, now+1, 1);
+                    dfs(places, now-1, x, y, 1);
+                    dfs(places, y, x, now-1, 1);
+                } else if (depth>0 && places[x][y].charAt(now) == 'X') {
 
-        if (visited[depthY][depthX]){
-            if (places[i][depthY].charAt(depthX) == 'P') {
-                return 0;
+                } else if (depth>0 && places[x][y].charAt(now) == 'O') {
+
+                }
             }
-            return 1;
         }
-
-        if (places[i][depthY].charAt(depthX) == 'X') {
-            return 1;
-        }
-        visited[depthY][depthX] = true;
-
-
-        dfs(places, visited, i, depthX + 1, depthY, 1);
-
-
-        if (repeat==0) {
-            dfs(places, visited, i, depthX - 1, depthY, repeat);
-        }
-//
-//
-//        dfs(places, visited, i, depthX, depthY+1, repeat);
-//
-//
-//        dfs(places, visited, i, depthX, depthY-1, repeat);
-
-
-
-
-        return 1;
     }
 
     public static void main(String[] args) {
