@@ -8,7 +8,6 @@ class Solution97 {
         int y=0;
         HashSet<Location> hashSet = new HashSet();
 
-        hashSet.add(new Location(x, y, 0, 0));
         for (int i=0; i<dirs.length(); i++){
             if (dirs.charAt(i)=='U'&&y<6){
                 y++;
@@ -25,7 +24,7 @@ class Solution97 {
             }
         }
 
-        return hashSet.size()-1;
+        return hashSet.size();
     }
 
     private class Location {
@@ -48,13 +47,18 @@ class Solution97 {
         @Override
         public boolean equals(Object obj) {
             Location l = (Location) obj;
-            return (this.x==l.preX&&this.y==l.preY) || (this.x==l.preX&&this.y==l.preY);
+            if (this.x==l.preX&&l.x==this.preX) {
+                return true;
+            } else if (this.y==l.preY&&l.y==this.preY) {
+                return true;
+            }
+            return false;
         }
     }
 
     public static void main(String[] args) {
         Solution97 solution97 = new Solution97();
 
-        System.out.println(solution97.solution("UDU"));
+        System.out.println(solution97.solution("UDUDDU"));
     }
 }
