@@ -1,10 +1,8 @@
 package unsolved;
 
 class Solution98 {
-    public int solution(String s)
-    {
+    public int solution(String s) {
         int answer = 0;
-
 
         return answer;
     }
