@@ -1,7 +1,5 @@
 package unsolved;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
 class Solution40 {
     int[] answer = {1, 1, 1, 1, 1};
     public int[] solution(String[][] places) {
