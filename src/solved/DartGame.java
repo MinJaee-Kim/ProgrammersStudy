@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class Solution117 {
     public int solution(String dartResult) {

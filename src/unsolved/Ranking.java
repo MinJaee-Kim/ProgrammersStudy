@@ -20,10 +20,18 @@ class Solution118 {
             if (arrayList.get(i).size()==n-1){
                 for (int j=0; j< arrayList.get(i).size(); j++) {
                     if (arrayList.get(i).get(j)[0].equals("win")){
-                        arrayList.get(Integer.parseInt(arrayList.get(i).get(j)[1])).addAll(arrayList.get(i));
-                        arrayList.get(Integer.parseInt(arrayList.get(i).get(j)[1])).remove(arrayList.get(i).get(j));
+                        //반복
+                        for (int k=0; k< arrayList.get(i).size(); k++) {
+                            if (arrayList.get(i).get(k)[0].equals("lose")){
+                                arrayList.get(Integer.parseInt(arrayList.get(i).get(j)[1])).add(arrayList.get(i).get(k));
+                            }
+                        }
                     } else {
-                        
+                        for (int k=0; k< arrayList.get(i).size(); k++) {
+                            if (arrayList.get(i).get(k)[0].equals("win")){
+                                arrayList.get(Integer.parseInt(arrayList.get(i).get(j)[1])).add(arrayList.get(i).get(k));
+                            }
+                        }
                     }
                 }
             }
