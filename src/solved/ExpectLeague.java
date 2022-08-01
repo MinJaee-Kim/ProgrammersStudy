@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class Solution57 {
     public int solution(int n, int a, int b) {
