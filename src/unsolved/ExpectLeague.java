@@ -3,12 +3,12 @@ package unsolved;
 class Solution57 {
     public int solution(int n, int a, int b) {
         int answer = 0;
-        int first = 0;
-        int second = 0;
 
-        while (true){
+        while (!(a==b)){
+            a=(a+1)/2;
+            b=(b+1)/2;
 
-            break;
+            answer++;
         }
 
         return answer;
@@ -18,6 +18,6 @@ class Solution57 {
     public static void main(String[] args) {
         Solution57 solution57 = new Solution57();
 
-        System.out.println(solution57.solution(16, 1, 15));
+        System.out.println(solution57.solution(8, 4, 7));
     }
 }
