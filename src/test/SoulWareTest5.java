@@ -1,6 +1,4 @@
-package unsolved;
-
-import java.util.Calendar;
+package test;
 
 public class SoulWareTest5 {
     public String solution(int value) {

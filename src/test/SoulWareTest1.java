@@ -1,4 +1,4 @@
-package unsolved;
+package test;
 
 public class SoulWareTest1 {
     public String solution(String s) {

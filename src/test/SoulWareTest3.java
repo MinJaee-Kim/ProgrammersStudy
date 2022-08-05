@@ -1,4 +1,4 @@
-package unsolved;
+package test;
 
 import java.util.ArrayList;
 import java.util.Random;
