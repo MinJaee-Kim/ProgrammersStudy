@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 public class PlusNumber {
     private int solution(int n) {
