@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 public class OddAndEven {
     public String solution(int num) {
