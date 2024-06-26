@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class ThreeMans {
     int answer = 0;
@@ -18,10 +18,10 @@ class ThreeMans {
         if(depth == number.length) {
             return;
         } else {
-            // visited[depth] = true;
+            visited[depth] = true;
             dfs(number, visited, depth + 1, now+number[depth], r-1);
 
-            // visited[depth] = false;
+            visited[depth] = false;
             dfs(number, visited, depth + 1, now, r);
         }
         
