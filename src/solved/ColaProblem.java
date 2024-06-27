@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class ColaProblem {
     public int solution(int a, int b, int n) {
@@ -9,7 +9,7 @@ class ColaProblem {
             answer += (n/a)*b;
             store += n%a;
 
-            n = n/a+store;
+            n = (n/a)*b+store;
             store = 0;
         }
 
