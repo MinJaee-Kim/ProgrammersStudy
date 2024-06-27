@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 public class FoodFightComp {
     public String solution(int[] food) {
