@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class Solution123 {
     public int solution(int m, int n, int[][] puddles) {
