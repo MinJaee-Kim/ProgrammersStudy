@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class NightsWaepon {
     public int solution(int number, int limit, int power) {
@@ -31,6 +31,6 @@ class NightsWaepon {
     public static void main(String[] args) {
         NightsWaepon n = new NightsWaepon();
 
-        System.out.println(n.solution(10, 3, 2));
+        System.out.println(n.solution(28, 3, 2));
     }
 }
