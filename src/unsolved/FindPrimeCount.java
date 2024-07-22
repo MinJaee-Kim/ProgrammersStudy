@@ -1,33 +1,22 @@
 package unsolved;
 
-import java.util.LinkedList;
-
 class Solution61 {
-    int cnt = 1;
-    LinkedList linkedList = new LinkedList();
     public int solution(int n) {
         int answer = 0;
 
-        prime(n);
+        for(int i=2; i<=n; i++){
+            answer+=isPrime(i)?1:0;
+        }
 
-        return cnt;
+        return answer;
     }
 
-    private void prime(int n) {
-        if (n==1)
-            return;
-
-        for (int i=2; i<n; i++){
-            if (n%i==0 || linkedList.contains(i)){
-                break;
-            } else if (i==n-1){
-                cnt++;
-                linkedList.add(i);
-            }
+    private boolean isPrime(int num) {
+        if (num <= 1) return false;
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
         }
-        prime(n-1);
-
-        return;
+        return true;
     }
 
     public static void main(String[] args) {
