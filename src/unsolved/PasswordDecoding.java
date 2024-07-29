@@ -1,11 +1,13 @@
 package unsolved;
 
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class PasswordDecoding {
     public String solution(String cipher, int code) {
-        System.out.println(IntStream.range(0, cipher.length()).filter(i->i%code==0).mapToObj(i->cipher.charAt(i)).toArray(String[]::new));
-        return "";
+        AtomicInteger index = new AtomicInteger();
+        
+        return cipher.chars().mapToObj(c->(char) c).filter(e->index.getAndIncrement()%code==code-1).map(String::valueOf).collect(Collectors.joining());
     }
 
     public static void main(String[] args) {
