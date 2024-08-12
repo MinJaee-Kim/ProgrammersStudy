@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 class FlipWords {
     public String solution(String my_string) {
