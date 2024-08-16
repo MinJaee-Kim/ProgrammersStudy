@@ -1,4 +1,4 @@
-package unsolved;
+package solved;
 
 public class ReadVertical {
     public String solution(String my_string, int m, int c) {
