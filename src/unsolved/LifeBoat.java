@@ -15,7 +15,7 @@ class Solution47 {
         Arrays.sort(convertPeople, Collections.reverseOrder());
         
         while(people.length>index||people.length>removeCount){
-            if(people.length>index) stack.add(convertPeople[index]);
+            if(people.length>index) stack.push(convertPeople[index]);
             
             index++;
             if(stackIndex<stack.size()&&stack.get(stackIndex)+stack.get(stack.size()-1)<=limit){
